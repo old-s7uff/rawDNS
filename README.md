@@ -8,7 +8,7 @@ Docs. Coming Soon.
 ---
 
 
-# DopeHosting | DopeInfinity Footer.
+# Footer.
 
 * [HOME](http://dopehosting.com/)
 * [Customer-Panel](https://dopeinfinity.io/)
