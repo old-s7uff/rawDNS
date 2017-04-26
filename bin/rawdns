@@ -3,7 +3,6 @@
 # ===========================================================
 # ===========================================================
 # Load Admin Credinals!.
-# In this case is needed just mysql access.
 # ===========================================================
 
 . /admin/mysql
@@ -12,24 +11,39 @@
 # ===========================================================
 
 # ===========================================================
-# START EVERYTIME.
-# Create SOA record.
-# 'cid' = Means Client ID. (isn't needed for personal usage!)
+# Create domain.
 # ===========================================================
-soa() {
+create() {
 domain=$1
 
- mysql -u $MYSQL_ADMIN -p$MYSQL_A_PW << EOF
+mysql -u $MYSQL_ADMIN -p$MYSQL_A_PW << EOF
 use $MYSQL_DBs;
 
 INSERT INTO domains (name, type) values ('$domain', 'MASTER');
-INSERT INTO records (name, content, type,ttl,prio)
-VALUES ('$domain','go1.dopeinfinity.io go2.dopeinfinity.io 2017040802 28800 7200 604800 86400','SOA',86400,0);
 
 EOF
 }
 # ===========================================================
-# END EVERYTIME.
+# END Create.
+# ===========================================================
+
+# ===========================================================
+# Create SOA.
+# ===========================================================
+soa() {
+domain=$1
+id=$2
+
+mysql -u $MYSQL_ADMIN -p$MYSQL_A_PW << EOF
+use $MYSQL_DBs;
+
+INSERT INTO records (domain_id, name, content, type,ttl,prio)
+VALUES ('$id', '$domain','$NS1 $NS2 2017040802 28800 7200 604800 86400','SOA',86400,0);
+
+EOF
+}
+# ===========================================================
+# END SOA.
 # ===========================================================
 
 # ===========================================================
@@ -91,8 +105,28 @@ EOF
 # DELETE DOMAIN.
 # ===========================================================
 
+# ===========================================================
+# DELETE SINGLE RECORD.
+# ===========================================================
+singlerecdel() {
+name=$1
+
+mysql -u $MYSQL_ADMIN -p$MYSQL_A_PW << EOF
+use $MYSQL_DB;
+
+DELETE FROM records WHERE name = '$name';
+
+EOF
+}
+# ===========================================================
+# DELETE RECORD.
+# ===========================================================
+
 if [[ "$1" == "create" ]]; then
      soa $2;
+fi
+if [[ "$1" == "soa" ]]; then
+     soa $2 $3;
 fi
 
 if [[ "$1" == "id" ]]; then
@@ -105,4 +139,8 @@ fi
 
 if [[ "$1" == "del" ]]; then
      delete $2;
+fi
+
+if [[ "$1" == "rdel" ]]; then
+     singlerecdel $2;
 fi
