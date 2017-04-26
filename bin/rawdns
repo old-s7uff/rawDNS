@@ -17,11 +17,15 @@
 # 'cid' = Means Client ID. (isn't needed for personal usage!)
 # ===========================================================
 soa() {
+       domain=$1
+
        mysql -u $MYSQL_ADMIN -p$MYSQL_A_PW << EOF
        use rawdns;
+
        INSERT INTO domains (name, type) values ('$domain', 'MASTER');
        INSERT INTO records (name, content, type,ttl,prio)
        VALUES ('$domain','go1.dopeinfinity.io go2.dopeinfinity.io 2017040802 28800 7200 604800 86400','SOA',86400,0);
+
        EOF
 }
 # ===========================================================
@@ -32,6 +36,12 @@ soa() {
 # CREATE RECORD
 # ===========================================================
 irec() {
+       domainid=$1
+       rec=$2
+       pto=$3
+       type=$4
+       ttl=$5
+
        mysql -u $MYSQL_ADMIN -p$MYSQL_A_PW << EOF
        use rawdns;
 
@@ -43,3 +53,35 @@ irec() {
 # ===========================================================
 # END RECORD.
 # ===========================================================
+
+# ===========================================================
+# DELETE DOMAIN + ALL RECORDS WHO MATCH DOMAIN ID.
+# Why ID and not domain name?!
+# Some one can put domain in wrong way. and can try to delete it in wrong way.
+# ===========================================================
+delete() {
+       id=$1
+
+       mysql -u $MYSQL_ADMIN -p$MYSQL_A_PW << EOF
+       use rawdns;
+       
+       DELETE FROM domains WHERE id = '$id';
+       DELETE FROM records WHERE domain_id = '$id';
+
+       EOF
+}
+# ===========================================================
+# DELETE DOMAIN.
+# ===========================================================
+
+if [[ "$1" == "create" ]]; then
+     soa $2;
+fi
+
+if [[ "$1" == "rec" ]]; then
+     irec $2 $3 $4 $5 $6;
+fi
+
+if [[ "$1" == "del" ]]; then
+     delete $2;
+fi
