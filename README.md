@@ -3,7 +3,7 @@
 RawDNS. It's PowerDNS. Doesn't offer more than that. Just is builded in a way to gave us more options on how to use and so we called it "rawDNS". 
 
 
-This repo is created as a app when clients can use. We use the same idea but php based not bash. 
+This repo is created as a app which clients can use. We've Create the same idea for customer-panel but that's php-based not bash.
 
 The usage of this is simple. 
 
