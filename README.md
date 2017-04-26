@@ -8,10 +8,15 @@ This repo is created as a app when clients can use. We use the same idea but php
 The usage of this is simple. 
 
 * Installation.
+
 **1 .** **`git clone https://github.com/DopeHosting/rawDNS.git`**
+
 **2 .** **`cd rawDNS`**
+
 **3 .** **`mkdir /admin; mv ~/rawDNS/admin/mysql /admin/`**
+
 **4 .** **`nano /admin/mysql`**
+
 ~ Wrote your mysql credinals on it. (as for password use whatever you want that will be used for mysql)
 **5 .** **`chmod +x install.sh; ./install.sh`**
 
