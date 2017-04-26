@@ -1,4 +1,5 @@
 #!/bin/bash
 export MYSQL_HOST_IP=69.0.0.1
+export MYSQL_DB=database
 export MYSQL_ADMIN=mysql-user
 export MYSQL_A_PW=user-password
