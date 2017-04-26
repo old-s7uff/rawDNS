@@ -17,7 +17,8 @@ The usage of this is simple.
 
 **4 .** **`nano /admin/mysql`**
 
-~ Wrote your mysql credinals on it. (as for password use whatever you want that will be used for mysql)
+~ Wrote your mysql credinals on it. (as for password use mysql password) And wrote your nameservers.
+
 **5 .** **`chmod +x install.sh; ./install.sh`**
 
 * CLI.
