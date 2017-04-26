@@ -3,3 +3,5 @@ export MYSQL_HOST_IP=69.0.0.1
 export MYSQL_DB=database
 export MYSQL_ADMIN=mysql-user
 export MYSQL_A_PW=user-password
+export NS1=go1.dopeinfinity.io
+export NS2=go2.dopeinfinity.io
