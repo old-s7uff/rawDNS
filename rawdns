@@ -32,7 +32,7 @@ soa() {
 # CREATE RECORD
 # ===========================================================
 irec() {
-       mysql -u $MYSQL-ADMIN -p$MYSQL-A-PW << EOF
+       mysql -u $MYSQL_ADMIN -p$MYSQL_A_PW << EOF
        use rawdns;
 
        INSERT INTO records (domain_id, name, content, type,ttl,prio)
