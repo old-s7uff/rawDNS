@@ -33,10 +33,10 @@ The usage of this is simple.
 ~ Get Domain ID.
 * **3 .** **`rawdns id example.com`**
 
-~ Create SOA (Without This You Domain Will not reach your server ip.) 1 = example.com ID
+~ Create SOA (Without This You Domain Will not reach your server ip.) **1** = `example.com` **ID**
 * **4 .** **`rawdns soa example.com 1`**
 
-~ Create one record for this domains. (1 = example.com ID)
+~ Create one record for this domain. (**1** = `example.com` **ID**)
 * **5 .** **`rawdns rec 1 example.com 123.123.123.123 A 3600`**
 
 ~ Another One.
