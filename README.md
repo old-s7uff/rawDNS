@@ -25,7 +25,7 @@ The usage of this is simple.
 
 
 * CLI.
-* **1 .** **`mv ~/rawDNS/bin/rawdns; chmod +x /bin/rawdns`**
+* **1 .** **`mv ~/rawDNS/bin/rawdns /bin/; chmod +x /bin/rawdns`**
 
 ~ Host a Domain With your dns service.
 * **2 .** **`rawdns create example.com`**
