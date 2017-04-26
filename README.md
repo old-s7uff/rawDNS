@@ -7,46 +7,49 @@ This repo is created as a app when clients can use. We use the same idea but php
 
 The usage of this is simple. 
 
-* Installation.
+* INSTALLATION.
 
-**1 .** **`git clone https://github.com/DopeHosting/rawDNS.git`**
+* **1 .** **`git clone https://github.com/DopeHosting/rawDNS.git`**
 
-**2 .** **`cd rawDNS`**
+* **2 .** **`cd rawDNS`**
 
-**3 .** **`mkdir /admin; mv ~/rawDNS/admin/mysql /admin/`**
+* **3 .** **`mkdir /admin; mv ~/rawDNS/admin/mysql /admin/`**
 
-**4 .** **`nano /admin/mysql`**
+* **4 .** **`nano /admin/mysql`**
 
 ~ Wrote your mysql credinals on it. (as for password use mysql password) And wrote your nameservers.
 
-**5 .** **`chmod +x install.sh; ./install.sh`**
+* **5 .** **`chmod +x install.sh; ./install.sh`**
+
+---
+
 
 * CLI.
-**1 .** **`mv ~/rawDNS/bin/rawdns; chmod +x /bin/rawdns`**
+* **1 .** **`mv ~/rawDNS/bin/rawdns; chmod +x /bin/rawdns`**
 
 ~ Host a Domain With your dns service.
-* **1 .** **`rawdns create example.com`**
+* **2 .** **`rawdns create example.com`**
 
 ~ Get Domain ID.
-* **2 .** **`rawdns id example.com`**
+* **3 .** **`rawdns id example.com`**
 
 ~ Create SOA (Without This You Domain Will not reach your server ip.) 1 = example.com ID
-* **3 .** **`rawdns soa example.com 1`**
+* **4 .** **`rawdns soa example.com 1`**
 
 ~ Create one record for this domains. (1 = example.com ID)
-* **4 .** **`rawdns rec 1 example.com 123.123.123.123 A 3600`**
+* **5 .** **`rawdns rec 1 example.com 123.123.123.123 A 3600`**
 
 ~ Another One.
-* **5 .** **`rawdns rec 1 www.example.com 123.123.123.123 A 3600`**
+* **6 .** **`rawdns rec 1 www.example.com 123.123.123.123 A 3600`**
 
 ~ Delete domain and All records which this domain have.
-* **6 .** **`rawdns del 1`**
+* **7 .** **`rawdns del 1`**
 
 ~ Delete Single Record For One Domain.
-* **7 .** **`raws rdel www.example.com`**
+* **8 .** **`raws rdel www.example.com`**
 
 ~ Another Delete ex.
-* **8 .** **`raws rdel subdomain.example.com`**
+* **9 .** **`raws rdel subdomain.example.com`**
 
 
 
