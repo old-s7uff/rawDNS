@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# ===========================================================
+# ===========================================================
+# Load Admin Credinals!.
+# In this case is needed just mysql access.
+# ===========================================================
+
+. /admin/mysql
+
+# ===========================================================
+# ===========================================================
+
+# ===========================================================
+# START EVERYTIME.
+# Create SOA record.
+# 'cid' = Means Client ID.
+# ===========================================================
+soa() {
+       mysql -u $MYSQL_ADMIN -p$MYSQL_A_PW << EOF
+       use rawdns;
+       INSERT INTO domains (name, type, cid) values ('$domain', 'MASTER', '$clientid');
+       INSERT INTO records (name, content, type,ttl,prio)
+       VALUES ('$domain','go1.dopeinfinity.io go2.dopeinfinity.io 2017040802 28800 7200 604800 86400','SOA',86400,0);
+       EOF
+}
+# ===========================================================
+# END EVERYTIME.
+# ===========================================================
+
+# ===========================================================
+# CREATE RECORD
+# ===========================================================
+irec() {
+       mysql -u $MYSQL_ADMIN -p$MYSQL_A_PW << EOF
+       use rawdns;
+
+       INSERT INTO records (domain_id, name, content, type,ttl,prio)
+       VALUES ($domainid,'$rec','$pto','$type',$ttl,0);
+
+       EOF
+}
+# ===========================================================
+# END RECORD.
+# ===========================================================
