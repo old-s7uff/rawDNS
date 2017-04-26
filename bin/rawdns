@@ -17,16 +17,16 @@
 # 'cid' = Means Client ID. (isn't needed for personal usage!)
 # ===========================================================
 soa() {
-       domain=$1
+domain=$1
 
-       mysql -u $MYSQL_ADMIN -p$MYSQL_A_PW << EOF
-       use rawdns;
+ mysql -u $MYSQL_ADMIN -p$MYSQL_A_PW << EOF
+use $MYSQL_DBs;
 
-       INSERT INTO domains (name, type) values ('$domain', 'MASTER');
-       INSERT INTO records (name, content, type,ttl,prio)
-       VALUES ('$domain','go1.dopeinfinity.io go2.dopeinfinity.io 2017040802 28800 7200 604800 86400','SOA',86400,0);
+INSERT INTO domains (name, type) values ('$domain', 'MASTER');
+INSERT INTO records (name, content, type,ttl,prio)
+VALUES ('$domain','go1.dopeinfinity.io go2.dopeinfinity.io 2017040802 28800 7200 604800 86400','SOA',86400,0);
 
-       EOF
+EOF
 }
 # ===========================================================
 # END EVERYTIME.
@@ -36,14 +36,14 @@ soa() {
 # START SHOW ID.
 # ===========================================================
 tellme() {
-       domain=$1
+domain=$1
 
-       mysql -u $MYSQL_ADMIN -p$MYSQL_A_PW << EOF
-       use rawdns;
+mysql -u $MYSQL_ADMIN -p$MYSQL_A_PW << EOF
+use $MYSQL_DB;
 
-       SELECT id FROM domains WHERE name = '$domain';
+SELECT id FROM domains WHERE name = '$domain';
 
-       EOF
+EOF
 }
 # ===========================================================
 # END SHOW ID.
@@ -53,19 +53,19 @@ tellme() {
 # CREATE RECORD
 # ===========================================================
 irec() {
-       domainid=$1
-       rec=$2
-       pto=$3
-       type=$4
-       ttl=$5
+domainid=$1
+rec=$2
+pto=$3
+type=$4
+ttl=$5
 
-       mysql -u $MYSQL_ADMIN -p$MYSQL_A_PW << EOF
-       use rawdns;
+mysql -u $MYSQL_ADMIN -p$MYSQL_A_PW << EOF
+use $MYSQL_DB;
 
-       INSERT INTO records (domain_id, name, content, type,ttl,prio)
-       VALUES ($domainid,'$rec','$pto','$type',$ttl,0);
+INSERT INTO records (domain_id, name, content, type,ttl,prio)
+VALUES ($domainid,'$rec','$pto','$type',$ttl,0);
 
-       EOF
+EOF
 }
 # ===========================================================
 # END RECORD.
@@ -77,15 +77,15 @@ irec() {
 # Some one can put domain in wrong way. and can try to delete it in wrong way.
 # ===========================================================
 delete() {
-       id=$1
+id=$1
 
-       mysql -u $MYSQL_ADMIN -p$MYSQL_A_PW << EOF
-       use rawdns;
+mysql -u $MYSQL_ADMIN -p$MYSQL_A_PW << EOF
+use $MYSQL_DB;
        
-       DELETE FROM domains WHERE id = '$id';
-       DELETE FROM records WHERE domain_id = '$id';
+DELETE FROM domains WHERE id = '$id';
+DELETE FROM records WHERE domain_id = '$id';
 
-       EOF
+EOF
 }
 # ===========================================================
 # DELETE DOMAIN.
