@@ -33,7 +33,7 @@ The usage of this is simple.
 ~ Get Domain ID.
 * **3 .** **`rawdns id example.com`**
 
-~ Create SOA (Without This You Domain Will not reach your server ip.) **1** = `example.com` **ID**
+~ Create SOA (Without This Your Domain Will not reach your server ip.) **1** = `example.com` **ID**
 * **4 .** **`rawdns soa example.com 1`**
 
 ~ Create one record for this domain. (**1** = `example.com` **ID**)
